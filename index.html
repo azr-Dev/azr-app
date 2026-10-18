@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>azrDev-appbuilder — Link & HTML jadi APK</title>
+<meta name="theme-color" content="#04060c"><link rel="icon" href="assets/icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="bg"><i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i></div>
+<header class="glass nav">
+  <img src="assets/icon.png" alt="azrDev" class="nav-ico"><b>azrDev<span>-appbuilder</span></b>
+  <nav><button data-view="build" class="on">Builder</button><button data-view="preview">Preview</button><button data-view="settings">Server</button></nav>
+  <span id="pill" class="pill">cek server…</span>
+</header>
+<main>
+<section id="v-build" class="view on">
+  <div class="hero glass"><img src="assets/logo-banner.jpg" alt="azrDev Developers Community"><div><h1>Ubah <em>link https</em> atau <em>file HTML</em> menjadi APK.</h1><p>Backend berjalan di Termux, tampilan di Vercel. Tanpa Android Studio.</p></div></div>
+  <form id="f" class="glass card" autocomplete="off">
+    <div class="row between"><div class="seg" id="modeSeg"><button type="button" data-mode="normal" class="on">Normal</button><button type="button" data-mode="dev">Developer</button></div>
+    <div class="seg" id="srcSeg"><button type="button" data-src="url" class="on">Link https</button><button type="button" data-src="html">File HTML</button></div></div>
+    <label>Nama aplikasi<input id="appName" maxlength="40" placeholder="Contoh: Toko Saya" required></label>
+    <label id="urlBox">URL website (https)<input id="url" type="url" placeholder="https://contoh.com"></label>
+    <label id="htmlBox" hidden>File HTML<input id="htmlFile" type="file" accept=".html,.htm,text/html"><small id="htmlInfo">Belum ada file</small></label>
+    <label>Ikon (opsional, PNG/JPG — tampil utuh)<input id="iconFile" type="file" accept="image/*"><img id="iconPrev" class="icon-prev" alt="" hidden></label>
+    <div id="dev" class="dev" hidden>
+      <label>Package name<input id="pkg" placeholder="com.azrdev.myapp"></label>
+      <label>Version name<input id="vn" value="1.0"></label><label>Version code<input id="vc" type="number" min="1" value="1"></label>
+      <label>Orientasi<select id="ori"><option value="auto">Otomatis</option><option value="portrait">Portrait</option><option value="landscape">Landscape</option></select></label>
+      <label>Warna tema<input id="theme" type="color" value="#0b1220"></label>
+      <label class="chk"><input id="full" type="checkbox"> Layar penuh</label>
+    </div>
+    <button class="start" id="start" type="submit"><span>Start — Buat APK</span></button>
+    <p id="err" class="err" hidden></p>
+  </form>
+  <div id="prog" class="glass card" hidden><div class="bar"><i id="barFill"></i></div><h3 id="stepTxt">Menunggu…</h3><pre id="logs"></pre></div>
+</section>
+<section id="v-preview" class="view">
+  <div class="glass card center"><div class="phone"><div class="notch"></div><div class="screen" id="pvScreen"><p class="muted">Belum ada APK. Buat dulu di tab Builder.</p></div></div>
+  <div id="pvInfo"></div>
+  <h3>Riwayat</h3><ul id="hist" class="hist"></ul></div>
+</section>
+<section id="v-settings" class="view">
+  <div class="glass card"><h2>Koneksi Server</h2><p class="muted">Isi URL tunnel Termux (Cloudflare Tunnel / ngrok), contoh <code>https://xxxx.trycloudflare.com</code>.</p>
+  <label>URL backend<input id="apiUrl" placeholder="https://…"></label><label>API key (jika diaktifkan)<input id="apiKey" type="password"></label>
+  <button class="start" id="saveSet"><span>Simpan & Cek Koneksi</span></button><pre id="health"></pre></div>
+</section>
+</main>
+<div id="gate" class="gate on"><div class="glass card center"><div class="spin"></div><h2>Server Offline</h2><p>Backend di Termux belum aktif atau URL tunnel belum diisi. Web otomatis terbuka saat server online.</p><button class="start" id="gateSet"><span>Atur Server</span></button></div></div>
+<footer>© azrDev — Developers Community</footer>
+<script src="app.js"></script>
+</body></html>
